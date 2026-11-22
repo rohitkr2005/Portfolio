@@ -37,7 +37,8 @@ class ChatRequest(BaseModel):
     streaming: Optional[bool] = True
 
 
-@app.get("/api/health")
+@app.api_route("/api/health", methods=["GET", "OPTIONS"])
+@app.api_route("/health", methods=["GET", "OPTIONS"])
 async def health_check():
     return {
         "status": "healthy",
@@ -47,18 +48,28 @@ async def health_check():
     }
 
 
-@app.get("/api/profile")
+@app.api_route("/api/profile", methods=["GET", "OPTIONS"])
+@app.api_route("/profile", methods=["GET", "OPTIONS"])
 async def get_profile():
     """Return complete structured profile data for the frontend."""
     return JSONResponse(content=ROHIT_PROFILE_DATA)
 
 
-@app.post("/api/chat")
-async def chat_endpoint(payload: ChatRequest):
+@app.api_route("/api/chat", methods=["GET", "POST", "OPTIONS"])
+@app.api_route("/chat", methods=["GET", "POST", "OPTIONS"])
+async def chat_endpoint(request: Request):
     """
     Real-time streaming AI endpoint.
     Uses SSE (text/event-stream) and streaming=true.
+    Supports both POST and OPTIONS (CORS preflight).
     """
+    if request.method == "OPTIONS":
+        return JSONResponse(content={"status": "ok"})
+    if request.method == "GET":
+        return JSONResponse(content={"status": "chat API ready", "method": "POST required"})
+
+    body = await request.json()
+    payload = ChatRequest(**body)
     return StreamingResponse(
         stream_ai_response(
             query=payload.message,
@@ -76,10 +87,12 @@ async def chat_endpoint(payload: ChatRequest):
     )
 
 
-# Mount public/static assets directory
-public_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "public")
-static_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
+# Only mount static assets when running local development server.
+# On Vercel, static assets are served directly from the public/ folder via Edge CDN.
+if not os.getenv("VERCEL"):
+    public_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "public")
+    static_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
 
-mount_dir = public_dir if os.path.exists(public_dir) else static_dir
-if os.path.exists(mount_dir):
-    app.mount("/", StaticFiles(directory=mount_dir, html=True), name="static")
+    mount_dir = public_dir if os.path.exists(public_dir) else static_dir
+    if os.path.exists(mount_dir):
+        app.mount("/", StaticFiles(directory=mount_dir, html=True), name="static")
