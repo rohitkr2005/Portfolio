@@ -788,3 +788,224 @@ html, body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.35);
 }
+
+/* ==========================================================================
+   Mobile & Responsive Adaptations (Phone Viewports <= 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Desktop Wallpaper & Background */
+  .macos-desktop {
+    overflow: hidden;
+  }
+
+  /* Top Menubar */
+  .macos-menubar {
+    height: 28px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+  .menubar-left .menubar-item:not(.apple-logo-btn):not(#menubar-app-name) {
+    display: none !important;
+  }
+  .menubar-right .menubar-item:not(#topbar-spotlight-btn):not(#topbar-clock) {
+    display: none !important;
+  }
+  #menubar-app-name {
+    font-size: 12px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Centered Welcome Title */
+  .desktop-welcome-center {
+    width: 90vw !important;
+    max-width: 90vw !important;
+  }
+  .welcome-title-center {
+    font-size: clamp(22px, 6vw, 32px) !important;
+    white-space: normal !important;
+    line-height: 1.25 !important;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  /* Desktop Grid & Icons */
+  .desktop-icons-area {
+    top: 34px !important;
+    bottom: 74px !important;
+    padding: 10px 8px !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px 6px !important;
+    justify-items: center;
+    overflow-y: auto;
+  }
+  .desktop-icon {
+    width: 76px !important;
+    padding: 6px 4px !important;
+  }
+  .desktop-icon-img {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .desktop-icon-label {
+    font-size: 10px !important;
+    max-width: 74px !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Windows on Mobile: Full-Screen / Mobile Modal Sheet */
+  .macos-window {
+    top: 32px !important;
+    left: 8px !important;
+    right: 8px !important;
+    width: calc(100vw - 16px) !important;
+    height: calc(100vh - 100px) !important;
+    max-width: calc(100vw - 16px) !important;
+    max-height: calc(100vh - 100px) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75) !important;
+    transform: none !important;
+  }
+  .window-titlebar {
+    height: 36px !important;
+    padding: 0 10px !important;
+  }
+  .traffic-dot {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  .window-title {
+    font-size: 12px !important;
+  }
+
+  /* Floating Dock on Mobile */
+  .macos-dock {
+    height: 52px !important;
+    padding: 4px 8px !important;
+    bottom: 6px !important;
+    max-width: 96vw !important;
+    gap: 6px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .dock-item {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+  }
+  .dock-icon-wrapper svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .dock-tooltip {
+    display: none !important;
+  }
+  .dock-dot {
+    bottom: 1px !important;
+    width: 3px !important;
+    height: 3px !important;
+  }
+
+  /* Quick Suggestion Chips */
+  .ai-quick-chips {
+    max-height: 64px !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    padding: 4px 6px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .chip-btn {
+    white-space: nowrap !important;
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* AI Input Bar */
+  .ai-input-bar {
+    padding: 6px 8px !important;
+  }
+  #ai-input-field {
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .ai-send-btn {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  /* Finder on Mobile: Stack Sidebar Above Main Area */
+  .finder-container {
+    flex-direction: column !important;
+  }
+  .finder-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    max-height: 90px !important;
+    overflow-y: auto !important;
+    padding: 6px 8px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 4px !important;
+  }
+  .finder-sidebar .sidebar-group-title {
+    display: none !important;
+  }
+  .finder-sidebar .sidebar-item {
+    white-space: nowrap !important;
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+  }
+  .finder-main {
+    padding: 10px !important;
+  }
+  .finder-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Preview Window on Mobile */
+  .preview-container {
+    flex-direction: column !important;
+  }
+  .preview-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    max-height: 75px !important;
+    display: flex !important;
+    padding: 6px !important;
+    gap: 6px !important;
+  }
+  .preview-doc-item {
+    flex: 1 !important;
+    padding: 6px !important;
+  }
+  .preview-doc-title {
+    font-size: 11px !important;
+  }
+
+  /* Settings Modal on Mobile */
+  .settings-container {
+    flex-direction: column !important;
+  }
+  .settings-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    max-height: 70px !important;
+    display: flex !important;
+    overflow-x: auto !important;
+    gap: 4px !important;
+  }
+  .settings-sidebar .settings-nav-item {
+    white-space: nowrap !important;
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+  }
+}

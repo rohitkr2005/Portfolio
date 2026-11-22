@@ -27,10 +27,13 @@ class MacOSManager {
     this.initSettingsContent();
     this.initDropdownMenu();
 
-    // Default open Ask AI and Finder on launch to welcome visitor!
+    // Default open Ask AI (and Finder on desktop) on launch to welcome visitor!
+    const isMobile = window.innerWidth <= 768;
     setTimeout(() => {
       this.openWindow('app-ask-ai');
-      this.openWindow('app-finder');
+      if (!isMobile) {
+        this.openWindow('app-finder');
+      }
     }, 400);
   }
 
@@ -94,6 +97,8 @@ class MacOSManager {
     let initialLeft = 0, initialTop = 0;
 
     const onMouseDown = (e) => {
+      // Do not drag on mobile to preserve natural touch scrolling
+      if (window.innerWidth <= 768) return;
       if (e.target.closest('.traffic-lights') || e.target.closest('button')) return;
       isDragging = true;
       startX = e.clientX;
@@ -251,17 +256,13 @@ class MacOSManager {
     });
   }
 
-  // Desktop Icons selection & double click to launch
+  // Desktop Icons selection & double click (or single tap on mobile) to launch
   initDesktopIcons() {
     const icons = document.querySelectorAll('.desktop-icon');
-    icons.forEach(icon => {
-      icon.addEventListener('click', (e) => {
-        e.stopPropagation();
-        icons.forEach(i => i.classList.remove('selected'));
-        icon.classList.add('selected');
-      });
+    const isTouchOrMobile = () => window.innerWidth <= 768 || ('ontouchstart' in window);
 
-      icon.addEventListener('dblclick', () => {
+    icons.forEach(icon => {
+      const launch = () => {
         const target = icon.getAttribute('data-target');
         const filter = icon.getAttribute('data-filter');
         if (target) {
@@ -270,6 +271,20 @@ class MacOSManager {
             this.filterFinder(filter);
           }
         }
+      };
+
+      icon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        icons.forEach(i => i.classList.remove('selected'));
+        icon.classList.add('selected');
+        // On mobile or touch devices, single tap immediately opens the item
+        if (isTouchOrMobile()) {
+          launch();
+        }
+      });
+
+      icon.addEventListener('dblclick', () => {
+        launch();
       });
     });
 
