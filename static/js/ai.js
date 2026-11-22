@@ -1,5 +1,5 @@
 // ==========================================================================
-// Ask AI Controller - Real-time Streaming AI Assistant for Rohit's Portfolio
+// Ask Rohit's AI Assistant - Controller & Real-Time Streaming Client
 // ==========================================================================
 
 class AskAIController {
@@ -8,15 +8,10 @@ class AskAIController {
     this.inputField = document.getElementById('ai-input-field');
     this.sendBtn = document.getElementById('ai-send-btn');
     this.statusBadge = document.getElementById('ai-status-badge');
-    this.settingsModal = document.getElementById('ai-settings-modal');
     
     this.history = [];
     this.isStreaming = false;
     this.abortController = null;
-    
-    // Load persisted settings
-    this.apiKey = localStorage.getItem('openrouter_api_key') || '';
-    this.model = localStorage.getItem('openrouter_model') || 'google/gemini-2.0-flash-exp:free';
     
     this.initEventListeners();
     this.renderInitialGreeting();
@@ -48,24 +43,6 @@ class AskAIController {
     const clearBtn = document.getElementById('ai-clear-btn');
     if (clearBtn) {
       clearBtn.addEventListener('click', () => this.clearChat());
-    }
-
-    // Settings Toggle Button
-    const settingsBtn = document.getElementById('ai-settings-btn');
-    if (settingsBtn) {
-      settingsBtn.addEventListener('click', () => this.openSettings());
-    }
-
-    // Save Settings
-    const saveSettingsBtn = document.getElementById('ai-save-settings');
-    if (saveSettingsBtn) {
-      saveSettingsBtn.addEventListener('click', () => this.saveSettings());
-    }
-
-    // Close Settings
-    const closeSettingsBtn = document.getElementById('ai-close-settings');
-    if (closeSettingsBtn) {
-      closeSettingsBtn.addEventListener('click', () => this.closeSettings());
     }
   }
 
@@ -116,7 +93,7 @@ class AskAIController {
     let fullResponse = '';
 
     try {
-      // Send payload with streaming: true explicitly
+      // Backend handles model and API key securely via server-side .env
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
@@ -125,8 +102,6 @@ class AskAIController {
         body: JSON.stringify({
           message: text,
           history: this.history.slice(-6),
-          apiKey: this.apiKey,
-          model: this.model,
           streaming: true // Requested requirement: streaming=true
         }),
         signal: this.abortController.signal
@@ -183,7 +158,6 @@ class AskAIController {
         console.error('Streaming error:', error);
         assistantBubble.innerHTML = `
           <p style="color: #ef4444;">⚠️ Encountered an error generating the AI response: ${error.message}</p>
-          <p>Please check your network or verify your OpenRouter API Key in settings.</p>
         `;
       }
     } finally {
@@ -226,8 +200,7 @@ class AskAIController {
       this.statusBadge.style.color = '#a855f7';
       this.statusBadge.style.background = 'rgba(168, 85, 247, 0.15)';
     } else {
-      const isOnline = !!this.apiKey;
-      this.statusBadge.textContent = isOnline ? 'OpenRouter Active' : 'Portfolio Knowledge Active';
+      this.statusBadge.textContent = 'Online';
       this.statusBadge.style.color = '#16a34a';
       this.statusBadge.style.background = 'rgba(34, 197, 94, 0.15)';
     }
@@ -239,37 +212,6 @@ class AskAIController {
     }
     this.history = [];
     this.renderInitialGreeting();
-  }
-
-  openSettings() {
-    if (this.settingsModal) {
-      const keyInput = document.getElementById('ai-api-key-input');
-      const modelSelect = document.getElementById('ai-model-select');
-      if (keyInput) keyInput.value = this.apiKey;
-      if (modelSelect) modelSelect.value = this.model;
-      this.settingsModal.classList.add('show');
-    }
-  }
-
-  closeSettings() {
-    if (this.settingsModal) {
-      this.settingsModal.classList.remove('show');
-    }
-  }
-
-  saveSettings() {
-    const keyInput = document.getElementById('ai-api-key-input');
-    const modelSelect = document.getElementById('ai-model-select');
-    if (keyInput) {
-      this.apiKey = keyInput.value.trim();
-      localStorage.setItem('openrouter_api_key', this.apiKey);
-    }
-    if (modelSelect) {
-      this.model = modelSelect.value;
-      localStorage.setItem('openrouter_model', this.model);
-    }
-    this.closeSettings();
-    this.updateStatus(false);
   }
 
   // Safe and clean Markdown rendering

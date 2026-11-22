@@ -180,9 +180,7 @@
           <div class="traffic-dot traffic-max" title="Maximize"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm16 16V5H5v14h14z"/></svg></div>
         </div>
         <div class="window-title">Ask Rohit's AI Assistant</div>
-        <div class="window-actions">
-          <button class="ai-btn-pill" id="ai-settings-btn" title="OpenRouter Model & API Key Settings">⚙️ Key</button>
-        </div>
+        <div class="window-actions"></div>
       </div>
 
       <div class="window-content">
@@ -194,7 +192,7 @@
                 <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg>
               </div>
               <div class="ai-title-wrap">
-                <h4>Rohit's AI Assistant <span class="ai-status-badge" id="ai-status-badge">Portfolio Knowledge Active</span></h4>
+                <h4>Rohit's AI Assistant <span class="ai-status-badge" id="ai-status-badge">Online</span></h4>
               </div>
             </div>
             <div class="ai-header-actions">
@@ -223,31 +221,6 @@
             <button class="ai-send-btn" id="ai-send-btn" title="Send (Enter)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             </button>
-          </div>
-
-          <!-- AI Settings Modal -->
-          <div class="ai-settings-modal" id="ai-settings-modal">
-            <h3>⚙️ AI Assistant Settings</h3>
-            <p style="font-size: 12px; color: var(--window-text-secondary); margin-bottom: 12px;">
-              Works automatically using Rohit's comprehensive portfolio database. You can also connect your free <strong>OpenRouter API Key</strong> for live external LLM streaming.
-            </p>
-            <div class="ai-settings-field">
-              <label for="ai-api-key-input">OpenRouter API Key (Optional)</label>
-              <input type="password" id="ai-api-key-input" placeholder="sk-or-v1-...">
-            </div>
-            <div class="ai-settings-field">
-              <label for="ai-model-select">OpenRouter Model</label>
-              <select id="ai-model-select">
-                <option value="google/gemini-2.0-flash-exp:free">Google Gemini 2.0 Flash (Free)</option>
-                <option value="meta-llama/llama-3.3-70b-instruct:free">Meta Llama 3.3 70B (Free)</option>
-                <option value="deepseek/deepseek-r1:free">DeepSeek R1 (Free)</option>
-                <option value="mistralai/mistral-7b-instruct:free">Mistral 7B Instruct (Free)</option>
-              </select>
-            </div>
-            <div class="ai-settings-buttons">
-              <button class="ai-btn-pill" id="ai-close-settings">Cancel</button>
-              <button class="ai-btn-pill" id="ai-save-settings" style="background: var(--accent-blue); color: white;">Save & Apply</button>
-            </div>
           </div>
         </div>
       </div>
@@ -427,7 +400,7 @@
           <div class="settings-sidebar">
             <div class="settings-nav-item active">💻 General & Specs</div>
             <div class="settings-nav-item" onclick="document.getElementById('settings-wallpaper-sec').scrollIntoView({behavior:'smooth'})">🖼️ Wallpapers</div>
-            <div class="settings-nav-item" onclick="window.macOS.openWindow('app-ask-ai'); window.askAI.openSettings();">🤖 AI Configuration</div>
+            <div class="settings-nav-item" onclick="window.macOS.openWindow('app-ask-ai');">🤖 Ask Rohit's AI</div>
           </div>
 
           <div class="settings-content">
