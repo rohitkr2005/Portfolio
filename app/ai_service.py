@@ -23,7 +23,7 @@ def get_grounded_fallback_response(query: str) -> str:
     # =========================================================================
 
     # Python
-    if "python" in q and any(w in q for w in ["know", "does", "do", "skill", "exp", "use", "profic", "good"]):
+    if "python" in q:
         return (
             "**Yes, absolutely!** Rohit is highly proficient in **Python** and uses it as his primary language for "
             "Data Science, Machine Learning, Computer Vision, and backend development.\n\n"
@@ -36,7 +36,7 @@ def get_grounded_fallback_response(query: str) -> str:
         )
 
     # SQL / Database
-    if "sql" in q and any(w in q for w in ["know", "does", "do", "skill", "exp", "use", "query", "database"]):
+    if any(k in q for k in ["sql", "postgres", "database"]):
         return (
             "**Yes!** Rohit is skilled in **SQL** and relational databases like **PostgreSQL**.\n\n"
             "- Uses SQL for complex multi-table joins, subqueries, CTEs, data aggregation, and database schema design.\n"
@@ -45,7 +45,7 @@ def get_grounded_fallback_response(query: str) -> str:
         )
 
     # Power BI / DAX / Business Intelligence
-    if any(k in q for k in ["power bi", "powerbi", "dax", "power query", "dashboard"]):
+    if any(k in q for k in ["power bi", "powerbi", "dax", "power query", "dashboard", "business intelligence"]):
         return (
             "**Yes!** Rohit is an expert in **Power BI, DAX, and Power Query (M)** for end-to-end business intelligence:\n\n"
             "- **UK Road Accident Analysis:** Analyzed **307,973 accident records across 21 variables**, developing interactive DAX measures to diagnose severe crash hotspots.\n"
@@ -55,7 +55,7 @@ def get_grounded_fallback_response(query: str) -> str:
         )
 
     # Computer Vision / OpenCV / MediaPipe / YOLO
-    if any(k in q for k in ["computer vision", "opencv", "mediapipe", "yolo", "cv"]):
+    if any(k in q for k in ["computer vision", "opencv", "mediapipe", "yolo"]) or re.search(r'\bcv\b', q):
         return (
             "**Yes!** Computer Vision is one of Rohit's core specializations:\n\n"
             "- **Safe Drive Vision AI (1st Place, Tech Fest 2026):** Uses Google MediaPipe to stream 468 3D facial landmarks at 30+ FPS, computing Eye Aspect Ratio (EAR) for micro-sleep detection and Mouth Aspect Ratio (MAR) for yawning, alongside custom YOLO phone distraction detection.\n"
@@ -65,7 +65,7 @@ def get_grounded_fallback_response(query: str) -> str:
         )
 
     # Machine Learning / Scikit-learn
-    if any(k in q for k in ["machine learning", "ml", "scikit", "scikit-learn", "deep learning"]):
+    if any(k in q for k in ["machine learning", "scikit", "scikit-learn", "deep learning"]) or re.search(r'\bml\b', q):
         return (
             "**Yes, definitely!** Rohit is an accomplished **Machine Learning** practitioner:\n\n"
             "- **Internship Experience:** At **NovaNectar Services**, he trained and fine-tuned regression, classification, and clustering models with Scikit-learn, achieving a **+12% model accuracy improvement**.\n"
@@ -74,10 +74,22 @@ def get_grounded_fallback_response(query: str) -> str:
         )
 
     # C Language
-    if re.search(r'\b(c\s+language|knows?\s+c|c\s+programming)\b', q) or (q == "does rohit know c" or q == "do rohit know c"):
+    if re.search(r'\b(c\s+language|knows?\s+c|c\s+programming|c\b)\b', q) and not any(w in q for w in ["cv", "certif", "contact"]):
         return (
             "**Yes!** Rohit knows **C programming** alongside Python. He learned C as part of his foundational computer science coursework, "
             "providing him with a solid understanding of low-level memory management, pointers, and data structures."
+        )
+
+    # All Skills / Overview of Tech Stack (Direct summary, no raw generic table)
+    if any(k in q for k in ["skill", "skills", "tech stack", "technologies", "tools", "capabilities", "what can rohit do", "what does he know"]):
+        return (
+            "### 🛠️ Rohit's Core Technical Skills\n\n"
+            "- **Programming & Scripting:** Python (Pandas, NumPy, Flask, Streamlit), SQL (PostgreSQL), C, JavaScript, HTML/CSS.\n"
+            "- **Computer Vision & AI:** OpenCV, Google MediaPipe (468 3D Face Mesh & Pose Kinematics), YOLO (v8/v11), Real-time 30+ FPS pipelines.\n"
+            "- **Machine Learning & Data Science:** Scikit-learn, Regression, Classification, Clustering, NLP, Feature Engineering, EDA (+12% accuracy gain at NovaNectar).\n"
+            "- **Business Intelligence & Analytics:** Microsoft Power BI, Advanced DAX, Power Query (M), Data Modeling (Star Schema), Interactive Dashboards (307K+ records analyzed).\n"
+            "- **Developer Tools & Workflow:** Git/GitHub, VS Code, Jupyter Notebooks, `uv` package manager, Linux/macOS shell.\n\n"
+            "*Ask me about any specific skill (e.g. 'Does Rohit know Python?' or 'Tell me about his Power BI work') for detailed real-world examples!*"
         )
 
     # =========================================================================
@@ -218,6 +230,18 @@ def get_grounded_fallback_response(query: str) -> str:
             "- Analyzed over **5,000 titles** by content type (Movies vs TV Shows), genre, country, and release trends.\n"
             "- Built custom DAX metrics for Year-over-Year (YoY) content addition rates.\n"
             "- **GitHub:** [rohitkr2005/Netflix-Analysis-PowerBI](https://github.com/rohitkr2005/Netflix-Analysis-PowerBI)"
+        )
+
+    # General projects inquiry
+    if any(k in q for k in ["project", "projects", "what did he build", "portfolio", "flagship", "built"]):
+        return (
+            "### 🚀 Rohit's Flagship Engineering Projects\n\n"
+            "Rohit has built **29+ repositories on GitHub**, specializing in Computer Vision, Machine Learning, and Power BI Analytics. His flagship systems include:\n\n"
+            "1. **Safe Drive Vision AI 🥇 (Tech Fest 2026 Winner):** Real-time driver fatigue monitoring running at 30+ FPS via MediaPipe (EAR for drowsiness, MAR for yawning) & YOLO phone detection.\n"
+            "2. **Smart Physio Detection System 🥇 (Tech Fest 2025 Winner):** Real-time biomechanical angle calculation and posture monitoring using MediaPipe Pose.\n"
+            "3. **UK Road Accident Analysis (307K+ Records):** Interactive Power BI dashboard analyzing 307,973 casualty records across 21 variables with dynamic DAX metrics.\n"
+            "4. **AutoAnalyst Pro:** Web-based automated exploratory data analysis tool with Flask, Pandas, and PostgreSQL, slashing memory spikes by 40%.\n\n"
+            "*Double-click any folder on the desktop or launch Finder to explore all 29 projects!*"
         )
 
     # =========================================================================
