@@ -1,0 +1,790 @@
+/* ==========================================================================
+   macOS Sequoia System Stylesheet
+   Designed for Rohit Kumar Mandal's Portfolio
+   ========================================================================== */
+
+:root {
+  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;
+  
+  --macos-topbar-bg: rgba(255, 255, 255, 0.45);
+  --macos-topbar-dark: rgba(22, 22, 26, 0.55);
+  --macos-topbar-text: #1d1d1f;
+  
+  --dock-bg: rgba(255, 255, 255, 0.28);
+  --dock-border: rgba(255, 255, 255, 0.35);
+  --dock-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  
+  --window-bg: rgba(250, 250, 252, 0.94);
+  --window-header-bg: rgba(240, 240, 243, 0.85);
+  --window-border: rgba(0, 0, 0, 0.12);
+  --window-shadow: 0 22px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.3);
+  --window-text: #1d1d1f;
+  --window-text-secondary: #86868b;
+  
+  --traffic-close: #ff5f56;
+  --traffic-close-border: #e0443e;
+  --traffic-min: #ffbd2e;
+  --traffic-min-border: #dea123;
+  --traffic-max: #27c93f;
+  --traffic-max-border: #1aab29;
+  
+  --accent-blue: #0071e3;
+  --accent-purple: #9333ea;
+  --accent-teal: #0d9488;
+  --accent-gradient: linear-gradient(135deg, #0071e3 0%, #a855f7 50%, #ec4899 100%);
+  --siri-glow: 0 0 25px rgba(168, 85, 247, 0.45), 0 0 60px rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="dark"] {
+  --macos-topbar-bg: rgba(22, 22, 26, 0.65);
+  --macos-topbar-text: #f5f5f7;
+  --dock-bg: rgba(30, 30, 36, 0.55);
+  --dock-border: rgba(255, 255, 255, 0.12);
+  --window-bg: rgba(30, 30, 36, 0.94);
+  --window-header-bg: rgba(40, 40, 48, 0.88);
+  --window-border: rgba(255, 255, 255, 0.1);
+  --window-shadow: 0 24px 70px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --window-text: #f5f5f7;
+  --window-text-secondary: #a1a1a6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-system);
+  color: var(--window-text);
+  user-select: none;
+}
+
+/* ==========================================================================
+   Desktop Wallpaper Background
+   ========================================================================== */
+.macos-desktop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  transition: background-image 0.5s ease-in-out;
+}
+
+/* Default Wallpaper: Sonoma Dark Horizon */
+.wallpaper-sonoma {
+  background: radial-gradient(circle at 80% 20%, #4f46e5 0%, #1e1b4b 35%, #0f172a 70%, #030712 100%),
+              radial-gradient(circle at 20% 80%, #06b6d4 0%, #0f172a 60%);
+  background-blend-mode: screen;
+}
+
+.wallpaper-sequoia {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 25%, #6366f1 50%, #8b5cf6 75%, #4c1d95 100%);
+}
+
+.wallpaper-aurora {
+  background: radial-gradient(circle at 50% 30%, #ec4899 0%, #8b5cf6 30%, #3b82f6 60%, #0f172a 100%);
+}
+
+.wallpaper-monterey {
+  background: linear-gradient(120deg, #182848 0%, #4b6cb7 50%, #1e3c72 100%);
+}
+
+/* ==========================================================================
+   Apple Top Menu Bar
+   ========================================================================== */
+.macos-menubar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: var(--macos-topbar-bg);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--macos-topbar-text);
+  z-index: 99999;
+}
+
+.menubar-left, .menubar-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 2px;
+}
+
+.menubar-item {
+  padding: 2px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  transition: background 0.15s ease;
+}
+
+.menubar-item:hover, .menubar-item.active {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.menubar-app-name {
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.apple-logo-btn {
+  padding: 2px 8px;
+}
+
+.apple-logo-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.menubar-right-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menubar-right-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.clock-display {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  padding-left: 4px;
+}
+
+/* Dropdown Menu */
+.macos-dropdown-menu {
+  position: absolute;
+  top: 28px;
+  left: 8px;
+  min-width: 210px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  z-index: 100000;
+  display: none;
+  animation: fadeInDown 0.15s ease;
+}
+
+[data-theme="dark"] .macos-dropdown-menu {
+  background: rgba(36, 36, 42, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.macos-dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-item {
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: inherit;
+}
+
+.dropdown-item:hover {
+  background: var(--accent-blue);
+  color: #fff;
+}
+
+.dropdown-separator {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 4px 6px;
+}
+
+[data-theme="dark"] .dropdown-separator {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   Desktop Welcome Title (Clean & Centered)
+   ========================================================================== */
+.desktop-welcome-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  width: auto;
+  max-width: 90vw;
+  animation: fadeInHero 0.8s ease-out;
+}
+
+@keyframes fadeInHero {
+  from { opacity: 0; transform: translate(-50%, -46%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.welcome-title-center {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #ffffff;
+  line-height: 1.2;
+  white-space: nowrap;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(224, 231, 255, 0.8) 50%, rgba(199, 210, 254, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.65));
+}
+
+/* ==========================================================================
+   Desktop Grid & Icons
+   ========================================================================== */
+.desktop-icons-area {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  right: 0;
+  bottom: 84px;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 16px 24px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.desktop-icon {
+  width: 92px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.15s ease, background 0.15s ease;
+  user-select: none;
+  position: relative;
+}
+
+.desktop-icon:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+.desktop-icon.selected {
+  background: rgba(0, 113, 227, 0.35);
+  outline: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.desktop-icon-img {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.desktop-icon-img svg, .desktop-icon-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.desktop-icon-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 6px rgba(0, 0, 0, 0.7);
+  word-break: break-word;
+  line-height: 1.25;
+  padding: 2px 5px;
+  border-radius: 4px;
+  max-width: 90px;
+}
+
+.desktop-icon.selected .desktop-icon-label {
+  background: #0071e3;
+  text-shadow: none;
+}
+
+/* Badge on icon */
+.icon-badge {
+  position: absolute;
+  top: 4px;
+  right: 12px;
+  background: #ff3b30;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 1px 5px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* ==========================================================================
+   macOS Window Frame & Traffic Lights
+   ========================================================================== */
+.macos-window {
+  position: absolute;
+  background: var(--window-bg);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--window-border);
+  border-radius: 12px;
+  box-shadow: var(--window-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 320px;
+  min-height: 220px;
+  z-index: 100;
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center bottom;
+}
+
+.macos-window.minimized {
+  opacity: 0;
+  transform: scale(0.1) translateY(600px);
+  pointer-events: none;
+}
+
+.macos-window.closing {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.macos-window.maximized {
+  top: 28px !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: calc(100vh - 28px - 80px) !important;
+  border-radius: 0;
+}
+
+.macos-window.active {
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Window Titlebar Header */
+.window-titlebar {
+  height: 42px;
+  background: var(--window-header-bg);
+  border-bottom: 1px solid var(--window-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.window-titlebar:active {
+  cursor: grabbing;
+}
+
+.traffic-lights {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 60px;
+}
+
+.traffic-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.15s ease;
+}
+
+.traffic-dot:hover {
+  filter: brightness(0.85);
+}
+
+.traffic-close {
+  background: var(--traffic-close);
+  border-color: var(--traffic-close-border);
+}
+
+.traffic-min {
+  background: var(--traffic-min);
+  border-color: var(--traffic-min-border);
+}
+
+.traffic-max {
+  background: var(--traffic-max);
+  border-color: var(--traffic-max-border);
+}
+
+.traffic-dot svg {
+  opacity: 0;
+  width: 8px;
+  height: 8px;
+  transition: opacity 0.15s ease;
+}
+
+.traffic-lights:hover .traffic-dot svg {
+  opacity: 0.7;
+}
+
+.window-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--window-text);
+  letter-spacing: -0.2px;
+  text-align: center;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 10px;
+}
+
+.window-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 60px;
+  justify-content: flex-end;
+}
+
+.window-content {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   macOS Dock (Bottom Taskbar)
+   ========================================================================== */
+.macos-dock-container {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.macos-dock {
+  background: var(--dock-bg);
+  backdrop-filter: blur(35px) saturate(190%);
+  -webkit-backdrop-filter: blur(35px) saturate(190%);
+  border: 1px solid var(--dock-border);
+  box-shadow: var(--dock-shadow);
+  border-radius: 20px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: auto;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dock-item {
+  width: 52px;
+  height: 52px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), margin 0.18s ease;
+  transform-origin: bottom center;
+}
+
+.dock-item:hover {
+  transform: scale(1.3) translateY(-10px);
+  margin: 0 8px;
+}
+
+.dock-item.bounce {
+  animation: dockBounce 0.6s ease infinite alternate;
+}
+
+@keyframes dockBounce {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-20px) scale(1.15); }
+}
+
+.dock-icon-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+}
+
+.dock-icon-wrapper svg, .dock-icon-wrapper img {
+  width: 100%;
+  height: 100%;
+}
+
+.dock-dot {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.dock-item.open .dock-dot {
+  opacity: 1;
+}
+
+/* Dock Separator */
+.dock-separator {
+  width: 1px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 0 4px 5px 4px;
+}
+
+/* Dock Tooltip */
+.dock-tooltip {
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 30, 36, 0.85);
+  backdrop-filter: blur(15px);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dock-item:hover .dock-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* ==========================================================================
+   Special Ask AI Siri Glow & Pulse
+   ========================================================================== */
+.siri-orb-icon {
+  background: radial-gradient(circle at 30% 30%, #38bdf8, #818cf8, #c084fc, #f472b6);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: siriGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes siriGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.5), 0 0 30px rgba(56, 189, 248, 0.3);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(236, 72, 153, 0.6), 0 0 45px rgba(99, 102, 241, 0.5);
+    transform: rotate(180deg) scale(1.05);
+  }
+}
+
+/* ==========================================================================
+   Spotlight Search Modal
+   ========================================================================== */
+.spotlight-modal {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 620px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.25);
+  z-index: 100000;
+  display: none;
+  overflow: hidden;
+  animation: fadeInDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .spotlight-modal {
+  background: rgba(30, 30, 36, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.spotlight-modal.show {
+  display: block;
+}
+
+.spotlight-input-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  gap: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .spotlight-input-wrapper {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spotlight-search-icon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.6;
+}
+
+.spotlight-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-family: var(--font-system);
+  color: var(--window-text);
+}
+
+.spotlight-input::placeholder {
+  color: var(--window-text-secondary);
+}
+
+.spotlight-results {
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.spotlight-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.spotlight-item:hover, .spotlight-item.active {
+  background: var(--accent-blue);
+  color: #fff;
+}
+
+.spotlight-item-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spotlight-item-text {
+  flex: 1;
+}
+
+.spotlight-item-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.spotlight-item-sub {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Scrollbar Customization
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+}

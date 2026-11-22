@@ -76,7 +76,10 @@ async def chat_endpoint(payload: ChatRequest):
     )
 
 
-# Mount static assets directory
+# Mount public/static assets directory
+public_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "public")
 static_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
-if os.path.exists(static_dir):
-    app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
+
+mount_dir = public_dir if os.path.exists(public_dir) else static_dir
+if os.path.exists(mount_dir):
+    app.mount("/", StaticFiles(directory=mount_dir, html=True), name="static")
