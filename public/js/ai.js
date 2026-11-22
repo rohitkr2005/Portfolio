@@ -315,12 +315,6 @@ class AskAIController {
       "- 📊 **'Show me his Power BI & Data Analytics work'**"
     );
   }
-      this.isStreaming = false;
-      this.abortController = null;
-      this.updateStatus(false);
-      this.scrollToBottom();
-    }
-  }
 
   createAssistantBubble() {
     const bubble = document.createElement('div');
