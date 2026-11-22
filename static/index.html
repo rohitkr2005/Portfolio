@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rohit Kumar Mandal — macOS Desktop Portfolio & Ask AI</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍎</text></svg>">
+  
+  <link rel="stylesheet" href="/css/macos.css?v=2.0">
+  <link rel="stylesheet" href="/css/apps.css?v=2.0">
+</head>
+<body>
+
+  <!-- macOS Desktop Container -->
+  <div id="macos-desktop" class="macos-desktop wallpaper-sonoma">
+
+    <!-- 1. Apple Top Menu Bar -->
+    <header class="macos-menubar">
+      <div class="menubar-left">
+        <!-- Apple Logo & Dropdown -->
+        <div class="menubar-item apple-logo-btn" id="apple-menu-btn" title="Apple Menu">
+          <svg viewBox="0 0 170 170">
+            <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.05-7.7-7.85-12-14.41-6.11-9.37-10.9-20.15-14.38-32.32-3.48-12.18-5.22-23.73-5.22-34.66 0-14.36 3.73-26.31 11.19-35.85 7.46-9.54 16.71-14.41 27.75-14.61 4.7 0 10.05 1.37 16.06 4.1 6.01 2.73 9.65 4.15 10.93 4.25 1.7-.22 5.66-1.74 11.89-4.56 6.23-2.82 11.75-4.05 16.57-3.69 12.35.84 22.38 5.76 30.08 14.77-10.74 6.51-16 15.42-15.78 26.74.22 8.78 3.59 16.03 10.11 21.75 6.52 5.72 14.15 9.06 22.88 10.02-2.17 6.74-4.8 13.53-7.88 20.37zM119.22 31.95c0-6.9 2.5-13.3 7.5-19.2 5-5.9 11.1-9.4 18.3-10.5.2 1.3.3 2.5.3 3.6 0 6.8-2.6 13.3-7.8 19.5-5.2 6.2-11.3 9.7-18.3 10.5z"/>
+          </svg>
+        </div>
+
+        <div class="menubar-item menubar-app-name" id="menubar-app-name">Ask Rohit's AI Assistant</div>
+        <div class="menubar-item" onclick="window.macOS.openWindow('app-finder')">Finder</div>
+        <div class="menubar-item" onclick="window.macOS.openWindow('app-preview')">Resume</div>
+        <div class="menubar-item" onclick="window.macOS.openWindow('app-terminal')">Terminal</div>
+        <div class="menubar-item" onclick="window.macOS.openWindow('app-settings')">Settings</div>
+      </div>
+
+      <div class="menubar-right">
+        <!-- Live OpenRouter status -->
+        <div class="menubar-item" title="Portfolio AI Status" onclick="window.macOS.openWindow('app-ask-ai')">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e; margin-right:4px;"></span>
+          <span style="font-size:11.5px; opacity:0.85;">AI Online</span>
+        </div>
+
+        <!-- Spotlight Search Icon -->
+        <div class="menubar-item menubar-right-icon" id="topbar-spotlight-btn" title="Spotlight Search (Cmd+K)">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </div>
+
+        <!-- Battery Icon -->
+        <div class="menubar-item menubar-right-icon" title="Battery: 100% (Charged)">
+          <svg viewBox="0 0 24 24"><path d="M16 4H8C6.9 4 6 4.9 6 6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 14H9V6h6v12zm5-11h-2v10h2c.55 0 1-.45 1-1V8c0-.55-.45-1-1-1z"/></svg>
+        </div>
+
+        <!-- Wi-Fi Icon -->
+        <div class="menubar-item menubar-right-icon" title="Wi-Fi: Connected">
+          <svg viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4zm0 4c3.48 0 6.64 1.35 9 3.55L12 19.8 3 11.55C5.36 9.35 8.52 8 12 8z"/></svg>
+        </div>
+
+        <!-- Date & Time -->
+        <div class="menubar-item clock-display" id="topbar-clock">Wed Nov 19 7:48 PM</div>
+      </div>
+    </header>
+
+    <!-- Apple Dropdown Menu -->
+    <div class="macos-dropdown-menu" id="apple-dropdown-menu">
+      <div class="dropdown-item" onclick="window.macOS.openWindow('app-settings')">About This Mac</div>
+      <div class="dropdown-separator"></div>
+      <div class="dropdown-item" onclick="window.macOS.openWindow('app-settings')">System Settings...</div>
+      <div class="dropdown-item" onclick="window.macOS.openWindow('app-finder')">Finder & Projects</div>
+      <div class="dropdown-item" onclick="window.macOS.openWindow('app-ask-ai')">Ask Rohit's AI Assistant</div>
+      <div class="dropdown-separator"></div>
+      <div class="dropdown-item" onclick="window.open('https://github.com/rohitkr2005', '_blank')">Rohit's GitHub ↗</div>
+      <div class="dropdown-item" onclick="window.open('https://www.linkedin.com/in/rohit-kumar-mandal-31223929a/', '_blank')">Rohit's LinkedIn ↗</div>
+      <div class="dropdown-separator"></div>
+      <div class="dropdown-item" onclick="window.location.reload()">Restart Session</div>
+    </div>
+
+    <!-- Desktop Center Title -->
+    <div class="desktop-welcome-center">
+      <h1 class="welcome-title-center">Welcome To Rohit's Portfolio AI</h1>
+    </div>
+
+    <!-- 2. Desktop Grid of Icons & Folders -->
+    <main class="desktop-icons-area">
+      <!-- Folder: Featured Projects -->
+      <div class="desktop-icon" data-target="app-finder" data-filter="featured" title="Double click to open">
+        <div class="desktop-icon-img">
+          <svg viewBox="0 0 64 64" fill="none">
+            <path d="M8 16C8 13.7909 9.79086 12 12 12H24.5858C25.6466 12 26.664 12.4214 27.4142 13.1716L30.8284 16.5858C31.5786 17.336 32.596 17.7574 33.6569 17.7574H52C54.2091 17.7574 56 19.5482 56 21.7574V48C56 50.2091 54.2091 52 52 52H12C9.79086 52 8 50.2091 8 48V16Z" fill="#0080FF"/>
+            <path d="M8 22H56V48C56 50.2091 54.2091 52 52 52H12C9.79086 52 8 50.2091 8 48V22Z" fill="#38BDF8"/>
+          </svg>
+        </div>
+        <div class="desktop-icon-label">Featured Projects</div>
+      </div>
+
+      <!-- Folder: Computer Vision & AI -->
+      <div class="desktop-icon" data-target="app-finder" data-filter="cv" title="Double click to open">
+        <div class="desktop-icon-img">
+          <svg viewBox="0 0 64 64" fill="none">
+            <path d="M8 16C8 13.7909 9.79086 12 12 12H24.5858C25.6466 12 26.664 12.4214 27.4142 13.1716L30.8284 16.5858C31.5786 17.336 32.596 17.7574 33.6569 17.7574H52C54.2091 17.7574 56 19.5482 56 21.7574V48C56 50.2091 54.2091 52 52 52H12C9.79086 52 8 50.2091 8 48V16Z" fill="#8B5CF6"/>
+            <path d="M8 22H56V48C56 50.2091 54.2091 52 52 52H12C9.79086 52 8 50.2091 8 48V22Z" fill="#A78BFA"/>
+          </svg>
+        </div>
+        <span class="icon-badge">🥇 2x</span>
+        <div class="desktop-icon-label">Vision & AI</div>
+      </div>
+
+      <!-- Folder: BI & Data Analytics -->
+      <div class="desktop-icon" data-target="app-finder" data-filter="bi" title="Double click to open">
+        <div class="desktop-icon-img">
+          <svg viewBox="0 0 64 64" fill="none">
+            <path d="M8 16C8 13.7909 9.79086 12 12 12H24.5858C25.6466 12 26.664 12.4214 27.4142 13.1716L30.8284 16.5858C31.5786 17.336 32.596 17.7574 33.6569 17.7574H52C54.2091 17.7574 56 19.5482 56 21.7574V48C56 50.2091 54.2091 52 52 52H12C9.79086 52 8 50.2091 8 48V16Z" fill="#F59E0B"/>
+            <path d="M8 22H56V48C56 50.2091 54.2091 52 52 52H12C9.79086 52 8 50.2091 8 48V22Z" fill="#FBBF24"/>
+          </svg>
+        </div>
+        <div class="desktop-icon-label">Power BI & SQL</div>
+      </div>
+
+      <!-- Folder: Machine Learning Models -->
+      <div class="desktop-icon" data-target="app-finder" data-filter="ml" title="Double click to open">
+        <div class="desktop-icon-img">
+          <svg viewBox="0 0 64 64" fill="none">
+            <path d="M8 16C8 13.7909 9.79086 12 12 12H24.5858C25.6466 12 26.664 12.4214 27.4142 13.1716L30.8284 16.5858C31.5786 17.336 32.596 17.7574 33.6569 17.7574H52C54.2091 17.7574 56 19.5482 56 21.7574V48C56 50.2091 54.2091 52 52 52H12C9.79086 52 8 50.2091 8 48V16Z" fill="#10B981"/>
+            <path d="M8 22H56V48C56 50.2091 54.2091 52 52 52H12C9.79086 52 8 50.2091 8 48V22Z" fill="#34D399"/>
+          </svg>
+        </div>
+        <div class="desktop-icon-label">ML Models</div>
+      </div>
+
+      <!-- File: Data Science Resume -->
+      <div class="desktop-icon" data-target="app-preview" title="Double click to open in Preview">
+        <div class="desktop-icon-img">
+          <svg viewBox="0 0 64 64" fill="none">
+            <rect x="12" y="8" width="40" height="48" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+            <rect x="18" y="16" width="28" height="4" rx="2" fill="#E2E8F0"/>
+            <rect x="18" y="24" width="28" height="3" rx="1.5" fill="#94A3B8"/>
+            <rect x="18" y="30" width="22" height="3" rx="1.5" fill="#94A3B8"/>
+            <rect x="18" y="36" width="28" height="3" rx="1.5" fill="#94A3B8"/>
+            <rect x="36" y="44" width="16" height="8" rx="2" fill="#EF4444"/>
+            <text x="44" y="50" font-size="6" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">PDF</text>
+          </svg>
+        </div>
+        <div class="desktop-icon-label">Rohit_DS_Resume.pdf</div>
+      </div>
+
+      <!-- File: Data Analytics Resume -->
+      <div class="desktop-icon" data-target="app-preview" title="Double click to open in Preview">
+        <div class="desktop-icon-img">
+          <svg viewBox="0 0 64 64" fill="none">
+            <rect x="12" y="8" width="40" height="48" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+            <rect x="18" y="16" width="28" height="4" rx="2" fill="#E2E8F0"/>
+            <rect x="18" y="24" width="28" height="3" rx="1.5" fill="#0EA5E9"/>
+            <rect x="18" y="30" width="22" height="3" rx="1.5" fill="#94A3B8"/>
+            <rect x="18" y="36" width="28" height="3" rx="1.5" fill="#94A3B8"/>
+            <rect x="36" y="44" width="16" height="8" rx="2" fill="#EF4444"/>
+            <text x="44" y="50" font-size="6" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">PDF</text>
+          </svg>
+        </div>
+        <div class="desktop-icon-label">Rohit_BI_Resume.pdf</div>
+      </div>
+
+      <!-- Special Shortcut: Ask Rohit's AI Assistant -->
+      <div class="desktop-icon" data-target="app-ask-ai" title="Double click to launch Ask Rohit's AI Assistant">
+        <div class="desktop-icon-img">
+          <div class="siri-orb-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </div>
+        </div>
+        <div class="desktop-icon-label">Ask Rohit's AI</div>
+      </div>
+    </main>
+
+    <!-- ==========================================================================
+         macOS Windows
+         ========================================================================== -->
+
+    <!-- WINDOW 1: Ask Rohit's AI Assistant -->
+    <div id="app-ask-ai" class="macos-window ai-active-glow" style="top: 56px; right: 36px; width: 560px; height: 620px;">
+      <div class="window-titlebar">
+        <div class="traffic-lights">
+          <div class="traffic-dot traffic-close" title="Close"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></div>
+          <div class="traffic-dot traffic-min" title="Minimize"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></div>
+          <div class="traffic-dot traffic-max" title="Maximize"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm16 16V5H5v14h14z"/></svg></div>
+        </div>
+        <div class="window-title">Ask Rohit's AI Assistant</div>
+        <div class="window-actions">
+          <button class="ai-btn-pill" id="ai-settings-btn" title="OpenRouter Model & API Key Settings">⚙️ Key</button>
+        </div>
+      </div>
+
+      <div class="window-content">
+        <div class="ai-window-container">
+          <!-- Header Bar -->
+          <div class="ai-header-bar">
+            <div class="ai-header-info">
+              <div class="ai-avatar">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg>
+              </div>
+              <div class="ai-title-wrap">
+                <h4>Rohit's AI Assistant <span class="ai-status-badge" id="ai-status-badge">Portfolio Knowledge Active</span></h4>
+              </div>
+            </div>
+            <div class="ai-header-actions">
+              <button class="ai-btn-pill" id="ai-clear-btn">Clear Chat</button>
+            </div>
+          </div>
+
+          <!-- Chat Stream Messages -->
+          <div class="ai-messages-area" id="ai-messages">
+            <!-- Messages rendered dynamically -->
+          </div>
+
+          <!-- Quick Suggestion Chips -->
+          <div class="ai-quick-chips">
+            <button class="chip-btn" data-prompt="Tell me about Rohit's Tech Fest winning projects">🏆 Tech Fest Wins</button>
+            <button class="chip-btn" data-prompt="What did Rohit do at NovaNectar Services?">💼 NovaNectar Internship</button>
+            <button class="chip-btn" data-prompt="Show me his UK Road Accident and Power BI analysis">📊 Road Accident 307k BI</button>
+            <button class="chip-btn" data-prompt="What are his core skills in Computer Vision & YOLO?">👁️ CV & YOLO Skills</button>
+            <button class="chip-btn" data-prompt="What is his educational background and CGPA?">🎓 CGPA & Education</button>
+            <button class="chip-btn" data-prompt="How can I contact or hire Rohit?">📬 Contact Rohit</button>
+          </div>
+
+          <!-- Input Bar with streaming=true -->
+          <div class="ai-input-bar">
+            <input type="text" id="ai-input-field" placeholder="Ask anything about Rohit's projects, experience, or skills..." autocomplete="off">
+            <button class="ai-send-btn" id="ai-send-btn" title="Send (Enter)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+          </div>
+
+          <!-- AI Settings Modal -->
+          <div class="ai-settings-modal" id="ai-settings-modal">
+            <h3>⚙️ AI Assistant Settings</h3>
+            <p style="font-size: 12px; color: var(--window-text-secondary); margin-bottom: 12px;">
+              Works automatically using Rohit's comprehensive portfolio database. You can also connect your free <strong>OpenRouter API Key</strong> for live external LLM streaming.
+            </p>
+            <div class="ai-settings-field">
+              <label for="ai-api-key-input">OpenRouter API Key (Optional)</label>
+              <input type="password" id="ai-api-key-input" placeholder="sk-or-v1-...">
+            </div>
+            <div class="ai-settings-field">
+              <label for="ai-model-select">OpenRouter Model</label>
+              <select id="ai-model-select">
+                <option value="google/gemini-2.0-flash-exp:free">Google Gemini 2.0 Flash (Free)</option>
+                <option value="meta-llama/llama-3.3-70b-instruct:free">Meta Llama 3.3 70B (Free)</option>
+                <option value="deepseek/deepseek-r1:free">DeepSeek R1 (Free)</option>
+                <option value="mistralai/mistral-7b-instruct:free">Mistral 7B Instruct (Free)</option>
+              </select>
+            </div>
+            <div class="ai-settings-buttons">
+              <button class="ai-btn-pill" id="ai-close-settings">Cancel</button>
+              <button class="ai-btn-pill" id="ai-save-settings" style="background: var(--accent-blue); color: white;">Save & Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 2: Finder (Projects Explorer) -->
+    <div id="app-finder" class="macos-window" style="top: 70px; left: 60px; width: 720px; height: 580px;">
+      <div class="window-titlebar">
+        <div class="traffic-lights">
+          <div class="traffic-dot traffic-close"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></div>
+          <div class="traffic-dot traffic-min"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></div>
+          <div class="traffic-dot traffic-max"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm16 16V5H5v14h14z"/></svg></div>
+        </div>
+        <div class="window-title">Projects Explorer — Finder</div>
+        <div class="window-actions"></div>
+      </div>
+
+      <div class="window-content">
+        <div class="finder-container">
+          <!-- Sidebar -->
+          <div class="finder-sidebar">
+            <div class="sidebar-group-title">Favorites</div>
+            <div class="sidebar-item active" data-filter="all">📁 All Projects (29)</div>
+            <div class="sidebar-item" data-filter="featured">⭐ Featured</div>
+            <div class="sidebar-item" data-filter="cv">👁️ Computer Vision</div>
+            <div class="sidebar-item" data-filter="bi">📊 Power BI & Analytics</div>
+            <div class="sidebar-item" data-filter="ml">🧠 Machine Learning</div>
+            <div class="sidebar-group-title" style="margin-top: 8px;">Documents</div>
+            <div class="sidebar-item" onclick="window.macOS.openWindow('app-preview')">📄 Resumes</div>
+            <div class="sidebar-item" onclick="window.macOS.openWindow('app-terminal')">💻 Terminal CLI</div>
+            <div class="sidebar-item" onclick="window.macOS.openWindow('app-safari')">🌐 Web Profiles</div>
+          </div>
+
+          <!-- Main Projects Area -->
+          <div class="finder-main">
+            <div class="finder-toolbar">
+              <div class="finder-breadcrumbs">Rohit's MacBook Pro &gt; Projects</div>
+              <div class="finder-search">
+                <span>🔍</span>
+                <input type="text" id="finder-search-input" placeholder="Search projects or stack...">
+              </div>
+            </div>
+            <div class="finder-content-grid" id="finder-projects-grid">
+              <!-- Rendered dynamically from PORTFOLIO_DATA -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 3: Preview (Resume Document Viewer) -->
+    <div id="app-preview" class="macos-window" style="top: 80px; left: 160px; width: 760px; height: 600px; display: none;">
+      <div class="window-titlebar">
+        <div class="traffic-lights">
+          <div class="traffic-dot traffic-close"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></div>
+          <div class="traffic-dot traffic-min"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></div>
+          <div class="traffic-dot traffic-max"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm16 16V5H5v14h14z"/></svg></div>
+        </div>
+        <div class="window-title">Preview — Rohit Kumar Mandal Resume</div>
+        <div class="window-actions">
+          <button class="ai-btn-pill" onclick="window.print()" title="Print / Save PDF">🖨️ Print / PDF</button>
+        </div>
+      </div>
+
+      <div class="window-content">
+        <div class="preview-container">
+          <div class="preview-toolbar">
+            <div class="preview-tabs">
+              <div class="preview-tab active" data-type="ds">Data Science & AI Resume</div>
+              <div class="preview-tab" data-type="bi">Data Analytics & Power BI Resume</div>
+            </div>
+            <div style="font-size: 11.5px; opacity: 0.7;">100% Zoom</div>
+          </div>
+          <div class="preview-doc-wrapper" id="preview-doc">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 4: Terminal -->
+    <div id="app-terminal" class="macos-window" style="top: 140px; left: 120px; width: 680px; height: 440px; display: none;">
+      <div class="window-titlebar">
+        <div class="traffic-lights">
+          <div class="traffic-dot traffic-close"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></div>
+          <div class="traffic-dot traffic-min"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></div>
+          <div class="traffic-dot traffic-max"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm16 16V5H5v14h14z"/></svg></div>
+        </div>
+        <div class="window-title">Terminal — zsh — 80x24</div>
+        <div class="window-actions"></div>
+      </div>
+
+      <div class="window-content terminal-window-content">
+        <div class="terminal-container" id="terminal-content">
+          <!-- Terminal output rendered dynamically -->
+        </div>
+        <div class="terminal-input-row" id="terminal-input-row">
+          <span class="terminal-prompt">rohit@macbook-pro</span> <span class="terminal-path">~ %</span>
+          <input type="text" id="terminal-input" class="terminal-input" spellcheck="false" autocomplete="off" autofocus>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 5: Safari (Web Browser & Profiles) -->
+    <div id="app-safari" class="macos-window" style="top: 100px; left: 180px; width: 720px; height: 520px; display: none;">
+      <div class="window-titlebar">
+        <div class="traffic-lights">
+          <div class="traffic-dot traffic-close"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></div>
+          <div class="traffic-dot traffic-min"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></div>
+          <div class="traffic-dot traffic-max"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm16 16V5H5v14h14z"/></svg></div>
+        </div>
+        <div class="window-title">Safari — Profiles & Links</div>
+        <div class="window-actions"></div>
+      </div>
+
+      <div class="window-content">
+        <div class="safari-container">
+          <div class="safari-chrome">
+            <div class="safari-nav-btns">
+              <span>◀</span>
+              <span>▶</span>
+            </div>
+            <div class="safari-url-bar">
+              🔒 <span>https://github.com/rohitkr2005</span>
+            </div>
+          </div>
+          <div class="safari-content">
+            <h2 style="font-size: 18px; margin-bottom: 8px;">Explore Rohit's Online Presence</h2>
+            <p style="font-size: 13px; color: var(--window-text-secondary); margin-bottom: 20px;">
+              Direct verified links to Rohit Kumar Mandal's GitHub profile containing 29 repositories and his official professional LinkedIn profile.
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <!-- GitHub Card -->
+              <div class="settings-card" style="margin-bottom:0;">
+                <div style="font-size: 28px; margin-bottom: 6px;">🐙</div>
+                <h3 style="font-size: 15px; font-weight: 700;">GitHub: @rohitkr2005</h3>
+                <p style="font-size: 12px; color: var(--window-text-secondary); margin: 6px 0 12px 0;">
+                  29 Public Repositories featuring Computer Vision (Safe Drive Vision AI), Power BI Dashboards, and Scikit-learn predictive pipelines.
+                </p>
+                <a href="https://github.com/rohitkr2005" target="_blank" class="ai-btn-pill" style="display: inline-flex; width: fit-content; text-decoration: none;">
+                  Open GitHub Profile ↗
+                </a>
+              </div>
+
+              <!-- LinkedIn Card -->
+              <div class="settings-card" style="margin-bottom:0;">
+                <div style="font-size: 28px; margin-bottom: 6px;">💼</div>
+                <h3 style="font-size: 15px; font-weight: 700;">LinkedIn: Rohit Kumar Mandal</h3>
+                <p style="font-size: 12px; color: var(--window-text-secondary); margin: 6px 0 12px 0;">
+                  Data Science undergraduate at Nalanda University Centre. Ex-Intern @ NovaNectar Services. Tech Fest winner.
+                </p>
+                <a href="https://www.linkedin.com/in/rohit-kumar-mandal-31223929a/" target="_blank" class="ai-btn-pill" style="display: inline-flex; width: fit-content; text-decoration: none;">
+                  Open LinkedIn Profile ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 6: System Settings & Wallpapers -->
+    <div id="app-settings" class="macos-window" style="top: 110px; left: 220px; width: 660px; height: 500px; display: none;">
+      <div class="window-titlebar">
+        <div class="traffic-lights">
+          <div class="traffic-dot traffic-close"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></div>
+          <div class="traffic-dot traffic-min"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></div>
+          <div class="traffic-dot traffic-max"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm16 16V5H5v14h14z"/></svg></div>
+        </div>
+        <div class="window-title">System Settings</div>
+        <div class="window-actions"></div>
+      </div>
+
+      <div class="window-content">
+        <div class="settings-container">
+          <div class="settings-sidebar">
+            <div class="settings-nav-item active">💻 General & Specs</div>
+            <div class="settings-nav-item" onclick="document.getElementById('settings-wallpaper-sec').scrollIntoView({behavior:'smooth'})">🖼️ Wallpapers</div>
+            <div class="settings-nav-item" onclick="window.macOS.openWindow('app-ask-ai'); window.askAI.openSettings();">🤖 AI Configuration</div>
+          </div>
+
+          <div class="settings-content">
+            <!-- Specs Card -->
+            <div class="settings-card">
+              <div style="display:flex; align-items:center; gap: 14px; margin-bottom: 12px;">
+                <div style="font-size: 32px;">💻</div>
+                <div>
+                  <h3 style="font-size: 16px; font-weight: 700;">MacBook Pro (16-inch, 2026)</h3>
+                  <div style="font-size: 12px; color: var(--window-text-secondary);">Owner: Rohit Kumar Mandal</div>
+                </div>
+              </div>
+              <div style="font-size: 12.5px; line-height: 1.7;">
+                <div><strong>Chip:</strong> Apple M3 Max (Data Science & AI Neural Engine)</div>
+                <div><strong>Memory:</strong> 64 GB Unified RAM</div>
+                <div><strong>System:</strong> macOS Sequoia 15.2 (Antigravity Edition)</div>
+                <div><strong>Environment:</strong> Python 3.13 + <code>uv</code> package manager</div>
+                <div><strong>CGPA:</strong> 8.86 / 10 @ Nalanda University Centre</div>
+              </div>
+            </div>
+
+            <!-- Appearance Theme -->
+            <div class="settings-card">
+              <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">Appearance</h4>
+              <div class="ai-settings-field">
+                <label for="settings-theme-select">Interface Theme</label>
+                <select id="settings-theme-select">
+                  <option value="dark">Dark Mode (macOS Sequoia Dark)</option>
+                  <option value="light">Light Mode (macOS Sequoia Light)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Wallpapers Picker -->
+            <div class="settings-card" id="settings-wallpaper-sec">
+              <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">Desktop Wallpaper</h4>
+              <p style="font-size: 12px; color: var(--window-text-secondary);">Choose your favorite macOS gradient atmosphere:</p>
+              
+              <div class="wallpaper-picker-grid">
+                <div class="wallpaper-thumb wallpaper-sonoma selected" data-wallpaper="wallpaper-sonoma">
+                  <div class="wallpaper-thumb-label">Sonoma Dark Horizon</div>
+                </div>
+                <div class="wallpaper-thumb wallpaper-sequoia" data-wallpaper="wallpaper-sequoia">
+                  <div class="wallpaper-thumb-label">Sequoia Blue Gradient</div>
+                </div>
+                <div class="wallpaper-thumb wallpaper-aurora" data-wallpaper="wallpaper-aurora">
+                  <div class="wallpaper-thumb-label">Cosmic Aurora Glow</div>
+                </div>
+                <div class="wallpaper-thumb wallpaper-monterey" data-wallpaper="wallpaper-monterey">
+                  <div class="wallpaper-thumb-label">Monterey Deep Navy</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spotlight Search Overlay (Cmd+K) -->
+    <div class="spotlight-modal" id="spotlight-modal">
+      <div class="spotlight-input-wrapper">
+        <svg class="spotlight-search-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" class="spotlight-input" id="spotlight-input" placeholder="Spotlight Search or Ask Rohit AI...">
+      </div>
+      <div class="spotlight-results" id="spotlight-results">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- 3. macOS Floating Bottom Dock (Taskbar) -->
+    <footer class="macos-dock-container">
+      <div class="macos-dock">
+        <!-- Finder -->
+        <div class="dock-item open" data-window="app-finder" title="Finder">
+          <div class="dock-icon-wrapper">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect width="64" height="64" rx="14" fill="#0071E3"/>
+              <path d="M22 20C22 20 20 28 32 28C44 28 42 20 42 20" stroke="white" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="24" cy="24" r="3" fill="white"/>
+              <circle cx="40" cy="24" r="3" fill="white"/>
+              <path d="M22 42C26 47 38 47 42 42" stroke="white" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="dock-dot"></div>
+          <div class="dock-tooltip">Finder</div>
+        </div>
+
+        <!-- Ask AI (Glowing Orb Icon) -->
+        <div class="dock-item open" data-window="app-ask-ai" title="Ask Rohit's AI Assistant">
+          <div class="dock-icon-wrapper">
+            <div class="siri-orb-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </div>
+          </div>
+          <div class="dock-dot"></div>
+          <div class="dock-tooltip">Ask Rohit's AI Assistant</div>
+        </div>
+
+        <!-- Projects Explorer -->
+        <div class="dock-item" data-window="app-finder" title="Projects">
+          <div class="dock-icon-wrapper">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect width="64" height="64" rx="14" fill="#6366F1"/>
+              <path d="M18 22H46V46H18V22Z" fill="white" fill-opacity="0.2"/>
+              <path d="M24 16H40V22H24V16Z" fill="white"/>
+              <rect x="18" y="22" width="28" height="24" rx="3" stroke="white" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="dock-dot"></div>
+          <div class="dock-tooltip">Projects</div>
+        </div>
+
+        <!-- Preview (Resume) -->
+        <div class="dock-item" data-window="app-preview" title="Resume Viewer">
+          <div class="dock-icon-wrapper">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect width="64" height="64" rx="14" fill="#0284C7"/>
+              <rect x="18" y="14" width="28" height="36" rx="4" fill="white"/>
+              <rect x="22" y="20" width="20" height="3" fill="#0284C7"/>
+              <rect x="22" y="26" width="16" height="2" fill="#94A3B8"/>
+              <rect x="22" y="31" width="18" height="2" fill="#94A3B8"/>
+            </svg>
+          </div>
+          <div class="dock-dot"></div>
+          <div class="dock-tooltip">Resume (Preview)</div>
+        </div>
+
+        <!-- Terminal -->
+        <div class="dock-item" data-window="app-terminal" title="Terminal">
+          <div class="dock-icon-wrapper">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect width="64" height="64" rx="14" fill="#18181B" stroke="#3F3F46" stroke-width="2"/>
+              <path d="M18 24L28 32L18 40" stroke="#22C55E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="32" y1="40" x2="44" y2="40" stroke="white" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="dock-dot"></div>
+          <div class="dock-tooltip">Terminal</div>
+        </div>
+
+        <!-- Safari -->
+        <div class="dock-item" data-window="app-safari" title="Safari">
+          <div class="dock-icon-wrapper">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect width="64" height="64" rx="14" fill="#0EA5E9"/>
+              <circle cx="32" cy="32" r="20" stroke="white" stroke-width="3"/>
+              <polygon points="32,18 36,32 32,46 28,32" fill="#EF4444"/>
+              <polygon points="32,18 28,32 32,46 36,32" fill="white"/>
+            </svg>
+          </div>
+          <div class="dock-dot"></div>
+          <div class="dock-tooltip">Safari</div>
+        </div>
+
+        <div class="dock-separator"></div>
+
+        <!-- System Settings -->
+        <div class="dock-item" data-window="app-settings" title="System Settings">
+          <div class="dock-icon-wrapper">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect width="64" height="64" rx="14" fill="#64748B"/>
+              <circle cx="32" cy="32" r="10" stroke="white" stroke-width="4"/>
+              <path d="M32 14V18M32 46V50M14 32H18M46 32H50M19 19L22 22M42 42L45 45M19 45L22 42M42 22L45 19" stroke="white" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="dock-dot"></div>
+          <div class="dock-tooltip">Settings</div>
+        </div>
+
+        <!-- Trash -->
+        <div class="dock-item" title="Trash" onclick="alert('Trash is clean! No wasted models here.')">
+          <div class="dock-icon-wrapper">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect width="64" height="64" rx="14" fill="#94A3B8"/>
+              <path d="M22 26V44C22 46 24 48 26 48H38C40 48 42 46 42 44V26" stroke="white" stroke-width="3"/>
+              <line x1="18" y1="22" x2="46" y2="22" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <path d="M28 22V18C28 17 29 16 30 16H34C35 16 36 17 36 18V22" stroke="white" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="dock-tooltip">Trash</div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts with cache busting -->
+  <script src="/js/data.js?v=2.0"></script>
+  <script src="/js/macos.js?v=2.0"></script>
+  <script src="/js/ai.js?v=2.0"></script>
+  <script src="/js/terminal.js?v=2.0"></script>
+</body>
+</html>
